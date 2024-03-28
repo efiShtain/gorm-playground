@@ -58,3 +58,9 @@ type Language struct {
 	Code string `gorm:"primarykey"`
 	Name string
 }
+
+type SelfReferencing struct {
+	Name         string `gorm:"uniqueIndex;not null"`
+	OriginalName *string
+	Original     *SelfReferencing `gorm:"references:Name"`
+}
